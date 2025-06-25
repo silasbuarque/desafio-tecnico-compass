@@ -1,6 +1,7 @@
 package com.compass.challange.voting.system.service.impl;
 
 import com.compass.challange.voting.system.client.CpfValidationClient;
+import com.compass.challange.voting.system.domain.service.impl.CpfValidationServiceImpl;
 import com.compass.challange.voting.system.util.CpfValidation;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

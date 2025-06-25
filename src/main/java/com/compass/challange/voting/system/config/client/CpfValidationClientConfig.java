@@ -1,4 +1,4 @@
-package com.compass.challange.voting.system.client.config;
+package com.compass.challange.voting.system.config.client;
 
 import feign.codec.ErrorDecoder;
 import org.springframework.context.annotation.Bean;
