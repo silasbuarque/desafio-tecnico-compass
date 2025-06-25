@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="https://jakarta.ee/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 version="3.0"
+                 xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence/orm
+                 https://jakarta.ee/xml/ns/persistence/orm_3_0.xsd">
+
+    <named-native-query name="Voting.getVotingResult"
+                        result-set-mapping="VotingResultMapping">
+        <query>
+            SELECT
+                p.id AS pautaId,
+                p.title AS pautaTitulo,
+                SUM(CASE WHEN v.voting = 'YES' THEN 1 ELSE 0 END) AS totalYes,
+                SUM(CASE WHEN v.voting = 'NO' THEN 1 ELSE 0 END) AS totalNo
+            FROM
+                TBG_VOTING v
+            JOIN
+                TBG_PAUTA p ON v.pauta_id = p.id
+            WHERE
+                p.id = :pautaId
+            GROUP BY
+                p.id, p.title
+        </query>
+    </named-native-query>
+
+</entity-mappings>

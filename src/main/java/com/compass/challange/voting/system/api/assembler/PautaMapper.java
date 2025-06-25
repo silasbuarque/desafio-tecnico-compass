@@ -28,8 +28,12 @@ public class PautaMapper {
                 .collect(Collectors.toList());
     }
 
-    public Pauta toEntity(PautaInput pauta) {
+    public Pauta inputToEntity(PautaInput pauta) {
         return modelMapper.map(pauta, Pauta.class);
+    }
+
+    public Pauta dtoToEntity(PautaDTO pautaDto) {
+        return modelMapper.map(pautaDto, Pauta.class);
     }
 
     public void copyToDomainObject(PautaInput pautaInput, Pauta pauta) {

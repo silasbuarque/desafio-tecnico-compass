@@ -62,7 +62,7 @@ class PautaMapperTest {
 
         when(modelMapper.map(pautaInput, Pauta.class)).thenReturn(expectedEntity);
 
-        Pauta result = pautaMapper.toEntity(pautaInput);
+        Pauta result = pautaMapper.inputToEntity(pautaInput);
 
         assertEquals(expectedEntity, result);
         verify(modelMapper).map(pautaInput, Pauta.class);
