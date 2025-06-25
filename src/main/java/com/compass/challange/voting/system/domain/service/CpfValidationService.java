@@ -1,4 +1,4 @@
-package com.compass.challange.voting.system.service;
+package com.compass.challange.voting.system.domain.service;
 
 import com.compass.challange.voting.system.util.CpfValidation;
 

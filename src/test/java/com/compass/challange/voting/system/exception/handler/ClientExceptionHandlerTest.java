@@ -1,7 +1,6 @@
 package com.compass.challange.voting.system.exception.handler;
 
 import com.compass.challange.voting.system.exception.CpfValidationException;
-import com.compass.challange.voting.system.util.ProblemDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,17 +9,19 @@ import org.springframework.http.ResponseEntity;
 import java.time.OffsetDateTime;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.Mockito.*;
 
 class ClientExceptionHandlerTest {
 
     private ClientExceptionHandler exceptionHandler;
-
     private HttpServletRequest request;
 
     @BeforeEach
     void setUp() {
         exceptionHandler = new ClientExceptionHandler();
-        request = null;
+
+        request = mock(HttpServletRequest.class);
+        when(request.getRequestURI()).thenReturn("/api/v1/teste");
     }
 
     @Test
@@ -39,7 +40,7 @@ class ClientExceptionHandlerTest {
         assertThat(body.getDetail()).isEqualTo(errorMessage);
         assertThat(body.getUserMessage()).isEqualTo("Não foi possível validar o CPF fornecido. Verifique e tente novamente.");
         assertThat(body.getTimestamp()).isBeforeOrEqualTo(OffsetDateTime.now());
-        assertThat(body.getType()).isEqualTo("https://api.seusistema.com/errors/cpf-validation");
+        assertThat(body.getType()).isEqualTo("/api/v1/teste");
     }
 
     @Test
@@ -58,6 +59,6 @@ class ClientExceptionHandlerTest {
         assertThat(body.getDetail()).isEqualTo(errorMessage);
         assertThat(body.getUserMessage()).isEqualTo("Ocorreu um erro inesperado. Por favor, tente novamente mais tarde.");
         assertThat(body.getTimestamp()).isBeforeOrEqualTo(OffsetDateTime.now());
-        assertThat(body.getType()).isEqualTo("https://api.seusistema.com/errors/internal");
+        assertThat(body.getType()).isEqualTo("/api/v1/teste");
     }
 }

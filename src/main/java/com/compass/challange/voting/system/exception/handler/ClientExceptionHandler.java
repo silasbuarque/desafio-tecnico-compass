@@ -1,7 +1,6 @@
 package com.compass.challange.voting.system.exception.handler;
 
 import com.compass.challange.voting.system.exception.CpfValidationException;
-import com.compass.challange.voting.system.util.ProblemDTO;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

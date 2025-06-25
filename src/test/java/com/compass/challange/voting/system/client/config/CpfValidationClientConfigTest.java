@@ -1,5 +1,7 @@
 package com.compass.challange.voting.system.client.config;
 
+import com.compass.challange.voting.system.config.client.CpfValidationClientConfig;
+import com.compass.challange.voting.system.config.client.CpfValidationErrorDecoder;
 import feign.codec.ErrorDecoder;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,5 +1,6 @@
 package com.compass.challange.voting.system.client.config;
 
+import com.compass.challange.voting.system.config.client.CpfValidationErrorDecoder;
 import com.compass.challange.voting.system.exception.CpfValidationException;
 import feign.Request;
 import feign.Response;

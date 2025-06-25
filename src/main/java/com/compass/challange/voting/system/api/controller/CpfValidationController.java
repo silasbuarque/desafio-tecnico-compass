@@ -1,6 +1,6 @@
-package com.compass.challange.voting.system.controller;
+package com.compass.challange.voting.system.api.controller;
 
-import com.compass.challange.voting.system.service.CpfValidationService;
+import com.compass.challange.voting.system.domain.service.CpfValidationService;
 import com.compass.challange.voting.system.util.CpfValidation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;

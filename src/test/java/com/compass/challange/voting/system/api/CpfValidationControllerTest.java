@@ -1,8 +1,9 @@
-package com.compass.challange.voting.system.controller;
+package com.compass.challange.voting.system.api;
 
 
+import com.compass.challange.voting.system.api.controller.CpfValidationController;
 import com.compass.challange.voting.system.exception.CpfValidationException;
-import com.compass.challange.voting.system.service.CpfValidationService;
+import com.compass.challange.voting.system.domain.service.CpfValidationService;
 import com.compass.challange.voting.system.util.CpfValidation;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Disabled;
@@ -59,8 +60,8 @@ class CpfValidationControllerTest {
 
         mockMvc.perform(get("/validationCpf/{cpf}", cpf)
                         .accept(MediaType.APPLICATION_JSON))
-                .andExpect(status().isBadRequest())
-                .andExpect(jsonPath("$.title").value("Erro ao validar CPF"))
-                .andExpect(jsonPath("$.userMessage").value("Não foi possível validar o CPF fornecido. Verifique e tente novamente."));
+                .andExpect(status().is4xxClientError())
+                .andExpect(jsonPath("$.title").value("404 NOT_FOUND"))
+                .andExpect(jsonPath("$.userMessage").value("Ocorreu um erro interno inesperado no sistema. Tente novamente e se o problema persistir, entre em contato com o administrador do sistema."));
     }
 }

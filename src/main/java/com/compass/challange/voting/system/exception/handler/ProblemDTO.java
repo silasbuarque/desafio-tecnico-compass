@@ -1,4 +1,4 @@
-package com.compass.challange.voting.system.util;
+package com.compass.challange.voting.system.exception.handler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Builder;

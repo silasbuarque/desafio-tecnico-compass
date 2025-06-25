@@ -1,7 +1,7 @@
-package com.compass.challange.voting.system.service.impl;
+package com.compass.challange.voting.system.domain.service.impl;
 
 import com.compass.challange.voting.system.client.CpfValidationClient;
-import com.compass.challange.voting.system.service.CpfValidationService;
+import com.compass.challange.voting.system.domain.service.CpfValidationService;
 import com.compass.challange.voting.system.util.CpfValidation;
 import org.springframework.stereotype.Service;
 
