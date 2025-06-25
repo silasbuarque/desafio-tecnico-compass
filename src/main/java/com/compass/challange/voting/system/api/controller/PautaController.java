@@ -64,7 +64,7 @@ public class PautaController {
     }
 
     @DeleteMapping("/{id}")
-    @ResponseStatus(HttpStatus.OK)
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     public void deletePauta(@PathVariable Long id) {
         logger.info("Deleting pauta with ID: {}", id);
         pautaService.deletePauta(id);

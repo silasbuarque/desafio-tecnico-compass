@@ -7,7 +7,7 @@ import org.apache.logging.log4j.core.config.plugins.validation.constraints.NotBl
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Entity(name = "TBG_PAUTAS")
+@Entity(name = "TBG_PAUTA")
 public class Pauta {
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)

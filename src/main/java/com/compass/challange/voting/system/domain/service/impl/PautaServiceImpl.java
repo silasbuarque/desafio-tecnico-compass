@@ -41,7 +41,7 @@ public class PautaServiceImpl implements PautaService {
     @Override
     @Transactional
     public PautaDTO addPauta(PautaInput pauta) {
-        Pauta pautaEntity = pautaMapper.toEntity(pauta);
+        Pauta pautaEntity = pautaMapper.inputToEntity(pauta);
         pautaEntity = pautaRepository.save(pautaEntity);
         return pautaMapper.toModel(pautaEntity);
     }

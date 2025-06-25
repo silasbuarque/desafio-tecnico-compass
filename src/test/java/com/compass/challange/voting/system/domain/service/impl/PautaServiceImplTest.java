@@ -90,14 +90,14 @@ class PautaServiceImplTest {
         PautaDTO pautaDTO = new PautaDTO();
         pautaDTO.setId(1L);
 
-        when(pautaMapper.toEntity(input)).thenReturn(pautaEntity);
+        when(pautaMapper.inputToEntity(input)).thenReturn(pautaEntity);
         when(pautaRepository.save(pautaEntity)).thenReturn(pautaSaved);
         when(pautaMapper.toModel(pautaSaved)).thenReturn(pautaDTO);
 
         PautaDTO result = pautaService.addPauta(input);
 
         assertThat(result).isEqualTo(pautaDTO);
-        verify(pautaMapper).toEntity(input);
+        verify(pautaMapper).inputToEntity(input);
         verify(pautaRepository).save(pautaEntity);
         verify(pautaMapper).toModel(pautaSaved);
     }
