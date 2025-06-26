@@ -74,7 +74,7 @@ class VotingServiceImplTest {
         votingSession.setStart(now);
         votingSession.setEnd(now.plusMinutes(1));
 
-        when(verifyDocument.validate()).thenReturn(true);
+        when(verifyDocument.isValid(input.getAssociateDocument())).thenReturn(true);
         when(verifyDocument.isAssociate(input)).thenReturn(true);
         when(pautaService.getPauta(1L)).thenReturn(pautaDto);
         when(pautaMapper.dtoToEntity(pautaDto)).thenReturn(pauta);
@@ -92,7 +92,7 @@ class VotingServiceImplTest {
         input.setAssociateDocument("00000000000");
         input.setPautaId(1L);
 
-        when(verifyDocument.validate()).thenReturn(false);
+        when(verifyDocument.isValid(input.getAssociateDocument())).thenReturn(false);
         when(verifyDocument.isAssociate(input)).thenReturn(true);
 
         assertThatThrownBy(() -> votingService.votar(input))

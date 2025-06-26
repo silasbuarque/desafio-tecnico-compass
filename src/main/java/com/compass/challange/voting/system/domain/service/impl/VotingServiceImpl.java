@@ -39,7 +39,7 @@ public class VotingServiceImpl implements VotingService {
     @Transactional
     public void votar(VotingInput input) {
 
-        if (!verifyDocument.validate() && verifyDocument.isAssociate(input)) {
+        if (!verifyDocument.isValid(input.getAssociateDocument()) && verifyDocument.isAssociate(input)) {
             throw new CpfValidationException("No possible voting with this document");
         }
 

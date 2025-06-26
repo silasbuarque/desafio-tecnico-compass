@@ -5,7 +5,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class CpfValidation {
+public class CpfValidationDTO {
 
     private String status;
 

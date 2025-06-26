@@ -11,7 +11,7 @@ import org.springframework.context.ApplicationContext;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = CpfValidationClientConfig.class)
-class CpfValidationClientConfigTest {
+class CpfValidationDTOClientConfigTest {
 
     @Autowired
     private ApplicationContext context;

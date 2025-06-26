@@ -18,12 +18,15 @@ class VerifyDocumentTest {
     @Mock
     private CpfValidationService cpfValidationService;
 
+    @Mock
+    private DocumentValidationService documentValidationService;
+
     private VerifyDocument verifyDocument;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        verifyDocument = new VerifyDocument(votingRepository, cpfValidationService);
+        verifyDocument = new VerifyDocument(votingRepository, cpfValidationService, documentValidationService);
     }
 
     @Test
@@ -56,7 +59,9 @@ class VerifyDocumentTest {
 
     @Test
     void validate_shouldAlwaysReturnTrue() {
-        boolean result = verifyDocument.validate();
+        when(documentValidationService.isValid("12345678909")).thenReturn(true);
+
+        boolean result = verifyDocument.isValid("12345678909");
         assertThat(result).isTrue();
     }
 }

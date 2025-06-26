@@ -4,7 +4,7 @@ package com.compass.challange.voting.system.api;
 import com.compass.challange.voting.system.api.controller.CpfValidationController;
 import com.compass.challange.voting.system.exception.CpfValidationException;
 import com.compass.challange.voting.system.domain.service.CpfValidationService;
-import com.compass.challange.voting.system.util.CpfValidation;
+import com.compass.challange.voting.system.util.CpfValidationDTO;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.DisplayName;
@@ -20,7 +20,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(CpfValidationController.class)
-class CpfValidationControllerTest {
+class CpfValidationDTOControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
@@ -33,20 +33,16 @@ class CpfValidationControllerTest {
 
     @Test
     @DisplayName("Deve retornar 200 e os dados do CPF quando válido")
-    @Disabled("O serviço de validação não está funcionando.")
     void deveRetornarCpfValidado() throws Exception {
 
         String cpf = "27846641042";
-        CpfValidation mockResponse = new CpfValidation();
-        mockResponse.setStatus("ABLE_TO_VOTE");
 
-        when(cpfValidationService.valiate(cpf)).thenReturn(mockResponse);
+        when(cpfValidationService.isValid(cpf)).thenReturn(true);
 
-        mockMvc.perform(get("/validationCpf/{cpf}", cpf)
+        mockMvc.perform(get("/validation/document/isValid/{cpf}", cpf)
                         .accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.cpf").value("27846641042"))
-                .andExpect(jsonPath("$.valid").value(true));
+                .andExpect(content().string("true"));
     }
 
     @Test
