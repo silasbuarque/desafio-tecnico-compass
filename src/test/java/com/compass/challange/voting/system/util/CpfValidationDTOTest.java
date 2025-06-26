@@ -5,15 +5,15 @@ import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class CpfValidationTest {
+class CpfValidationDTOTest {
 
     @Test
     void shouldSetAndGetStatus() {
-        CpfValidation cpfValidation = new CpfValidation();
+        CpfValidationDTO cpfValidationDTO = new CpfValidationDTO();
         String expectedStatus = "VALID";
 
-        cpfValidation.setStatus(expectedStatus);
+        cpfValidationDTO.setStatus(expectedStatus);
 
-        assertThat(cpfValidation.getStatus()).isEqualTo(expectedStatus);
+        assertThat(cpfValidationDTO.getStatus()).isEqualTo(expectedStatus);
     }
 }

@@ -1,9 +1,11 @@
 package com.compass.challange.voting.system.domain.service;
 
-import com.compass.challange.voting.system.util.CpfValidation;
+import com.compass.challange.voting.system.util.CpfValidationDTO;
 
 public interface CpfValidationService {
 
-    CpfValidation valiate(String document);
+    CpfValidationDTO valiate(String document);
+
+    boolean isValid(String document);
 
 }

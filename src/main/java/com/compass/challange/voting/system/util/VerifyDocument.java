@@ -11,10 +11,12 @@ public class VerifyDocument {
     public static final String ABLE_TO_VOTE = "ABLE_TO_VOTE";
     private final VotingRepository votingRepository;
     private final CpfValidationService cpfValidationService;
+    private final DocumentValidationService documentValidationService;
 
-    public VerifyDocument(VotingRepository votingRepository, CpfValidationService cpfValidationService) {
+    public VerifyDocument(VotingRepository votingRepository, CpfValidationService cpfValidationService, DocumentValidationService documentValidationService) {
         this.votingRepository = votingRepository;
         this.cpfValidationService = cpfValidationService;
+        this.documentValidationService = documentValidationService;
     }
 
     public boolean isAssociate(VotingInput input) {
@@ -26,13 +28,13 @@ public class VerifyDocument {
      * @param document
      * @return
      */
-//    public boolean validate(String document) {
-//        CpfValidation valiate = cpfValidationService.valiate(document);
-//        return valiate.getStatus().equals(ABLE_TO_VOTE);
-//    }
+    public boolean validate(String document) {
+        CpfValidationDTO valiate = cpfValidationService.valiate(document);
+        return valiate.getStatus().equals(ABLE_TO_VOTE);
+    }
 
-     public boolean validate() {
-        return true;
+     public boolean isValid(String document) {
+        return documentValidationService.isValid(document);
      }
 
 }
