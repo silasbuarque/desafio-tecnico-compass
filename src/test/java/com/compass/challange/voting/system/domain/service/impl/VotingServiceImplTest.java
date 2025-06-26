@@ -7,8 +7,10 @@ import com.compass.challange.voting.system.api.dto.output.VotingResultDTO;
 import com.compass.challange.voting.system.domain.model.Pauta;
 import com.compass.challange.voting.system.domain.model.Voting;
 import com.compass.challange.voting.system.domain.model.VotingEnum;
+import com.compass.challange.voting.system.domain.model.VotingSession;
 import com.compass.challange.voting.system.domain.repository.VotingRepository;
 import com.compass.challange.voting.system.domain.service.PautaService;
+import com.compass.challange.voting.system.domain.service.VotingSessionService;
 import com.compass.challange.voting.system.exception.CpfValidationException;
 import com.compass.challange.voting.system.exception.PautaNotFoundException;
 import com.compass.challange.voting.system.util.VerifyDocument;
@@ -16,6 +18,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
+import java.time.OffsetDateTime;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.*;
@@ -37,6 +40,9 @@ class VotingServiceImplTest {
 
     @Mock
     private VerifyDocument verifyDocument;
+
+    @Mock
+    private VotingSessionService votingSessionService;
 
     @BeforeEach
     void setUp() {
@@ -60,10 +66,20 @@ class VotingServiceImplTest {
         pauta.setTitle("Título");
         pauta.setDescription("Descrição");
 
+        OffsetDateTime now = OffsetDateTime.now();
+
+        VotingSession votingSession = new VotingSession();
+        votingSession.setPauta(pauta);
+        votingSession.setId(1L);
+        votingSession.setStart(now);
+        votingSession.setEnd(now.plusMinutes(1));
+
         when(verifyDocument.validate()).thenReturn(true);
         when(verifyDocument.isAssociate(input)).thenReturn(true);
         when(pautaService.getPauta(1L)).thenReturn(pautaDto);
         when(pautaMapper.dtoToEntity(pautaDto)).thenReturn(pauta);
+        when(votingSessionService.findSessionForPauta(pauta)).thenReturn(votingSession);
+        when(votingSessionService.isSessaoOn(votingSession)).thenReturn(true);
 
         votingService.votar(input);
 
